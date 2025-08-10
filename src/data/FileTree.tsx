@@ -1,6 +1,6 @@
 import type { IFile } from "../Interfaces";
 
-export const FileTree: IFile = {
+export const fileTree: IFile = {
   name: "vs code clone",
   isFolder: true,
   children: [
@@ -11,13 +11,19 @@ export const FileTree: IFile = {
         {
           name: ".vite",
           isFolder: true,
-          children: [{ name: ".js", isFolder: false }],
+          children: [{ name: "react.js", isFolder: false }],
         },
       ],
     },
     {
-      name: "index.html",
-      isFolder: false,
+      name: "public",
+      isFolder: true,
+      children: [
+        {
+          name: "index.html",
+          isFolder: false,
+        },
+      ],
     },
   ],
 };
