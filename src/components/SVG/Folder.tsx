@@ -1,4 +1,4 @@
-import { svgStyles } from "../../styles";
+import { svgStyles } from "../Styles";
 
 function FolderIcon() {
   return (
