@@ -7,7 +7,8 @@ export interface IFile {
 }
 export interface IClickedFile {
   fileName: string;
-  fileContent: string;
+  fileContent: string | undefined;
+  activeTabId: string | null;
 }
 export interface IIntialState {
   openedFiles: IFile[];
