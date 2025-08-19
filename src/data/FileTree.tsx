@@ -39,6 +39,11 @@ export const fileTree: IFile = {
 
           name: "index.html",
           isFolder: false,
+          content: `export interface IClickedFile {
+  fileName: string;
+  fileContent: string | undefined;
+  activeTabId: string | null;
+}`,
         },
       ],
     },
@@ -57,7 +62,13 @@ export const fileTree: IFile = {
               id: uuid(),
               name: "Button.tsx",
               isFolder: false,
-              content: "testing content",
+              content: `export interface IFile {
+  id: string;
+  name: string;
+  isFolder: boolean;
+  children?: IFile[];
+  content?: string;
+}`,
             },
             {
               id: uuid(),

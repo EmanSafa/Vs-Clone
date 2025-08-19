@@ -11,6 +11,7 @@ interface IProps {
 
 const OpenedFilesBarTab = ({ file }: IProps) => {
   const dispatch = useDispatch();
+
   const { id, name, content } = file;
   const {
     clickedFile: { activeTabId },
