@@ -26,7 +26,11 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
   );
   const onFileClicked = () => {
     const exists = doesFileObjectExist(openedFiles, id);
-    dispatch(setOpenedFiles([...openedFiles, fileTree]));
+    
+    if (!exists) {
+      dispatch(setOpenedFiles([...openedFiles, fileTree]));
+    }
+    
     dispatch(
       setClickedFile({
         fileName: name,
@@ -34,7 +38,6 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
         activeTabId: id,
       })
     );
-    if (exists) return;
   };
 
   return (
