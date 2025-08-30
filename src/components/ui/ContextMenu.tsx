@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOpenedFiles } from "../../app/features/fileTreeSlice";
+import type { RootState } from "../../app/store";
 interface IProps {
   setShowMenu: (val: boolean) => void;
   positions: {
@@ -11,8 +12,16 @@ interface IProps {
 
 const ContextMenu = ({ positions, setShowMenu }: IProps) => {
   const dispatch = useDispatch();
+  const { openedFiles, tabIdToDelete } = useSelector(
+    (state: RootState) => state.fileTree
+  );
   const handleCloseAll = () => {
     dispatch(setOpenedFiles([]));
+    setShowMenu(false);
+  };
+  const handleClose = () => {
+    const filtered = openedFiles.filter((file) => file.id !== tabIdToDelete);
+    dispatch(setOpenedFiles(filtered));
     setShowMenu(false);
   };
   const menuRef = useRef<HTMLUListElement>(null);
@@ -28,13 +37,19 @@ const ContextMenu = ({ positions, setShowMenu }: IProps) => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, [setShowMenu]);
+
   return (
     <ul
       ref={menuRef}
       className="bg-zinc-800 rounded-lg w-[10rem]  text-zinc-300"
       style={{ top: positions.y, left: positions.x, position: "absolute" }}
     >
-      <li className=" hover:bg-zinc-700 w-full px-10 my-2">Close </li>
+      <li
+        className=" hover:bg-zinc-700 w-full px-10 my-2"
+        onClick={handleClose}
+      >
+        Close{" "}
+      </li>
       <li
         className=" hover:bg-zinc-700 w-full px-10 my-2"
         onClick={handleCloseAll}

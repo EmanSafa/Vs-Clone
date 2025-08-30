@@ -13,4 +13,5 @@ export interface IClickedFile {
 export interface IIntialState {
   openedFiles: IFile[];
   clickedFile: IClickedFile;
+  tabIdToDelete: string | null;
 }

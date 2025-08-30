@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setClickedFile, setOpenedFiles } from "../app/features/fileTreeSlice";
+import { setClickedFile, setOpenedFiles, setTabIdToRemove } from "../app/features/fileTreeSlice";
 import type { IFile } from "../Interfaces";
 import RendenrFileIcon from "./RendenrFileIcon";
 import CloseIcon from "./SVG/CloseIcon";
@@ -12,6 +12,8 @@ interface IProps {
 
 const OpenedFilesBarTab = ({ file }: IProps) => {
   const dispatch = useDispatch();
+  
+
   const { id, name, content } = file;
   const {
     clickedFile: { activeTabId },
@@ -56,7 +58,9 @@ const OpenedFilesBarTab = ({ file }: IProps) => {
         file.id === activeTabId ? " border-[#cf6ccf]" : "border-transparent"
       }`}
       onClick={onClick}
-     
+     onContextMenu={(e) => {e.preventDefault()
+      dispatch(setTabIdToRemove(file.id));
+     }}
     >
       <span>
         <RendenrFileIcon filename={name} />
