@@ -5,13 +5,13 @@ import RendenrFileIcon from "./RendenrFileIcon";
 import CloseIcon from "./SVG/CloseIcon";
 import type { RootState } from "../app/store";
 
+
 interface IProps {
   file: IFile;
 }
 
 const OpenedFilesBarTab = ({ file }: IProps) => {
   const dispatch = useDispatch();
-
   const { id, name, content } = file;
   const {
     clickedFile: { activeTabId },
@@ -31,13 +31,13 @@ const OpenedFilesBarTab = ({ file }: IProps) => {
     const lastTab = filtered[filtered.length - 1];
     if (!lastTab) {
       dispatch(setOpenedFiles([]));
-       dispatch(
-      setClickedFile({
-        fileName: "",
-        fileContent: "",
-        activeTabId: null,
-      })
-    );
+      dispatch(
+        setClickedFile({
+          fileName: "",
+          fileContent: "",
+          activeTabId: null,
+        })
+      );
       return;
     }
     const { name, content, id } = lastTab;
@@ -56,6 +56,7 @@ const OpenedFilesBarTab = ({ file }: IProps) => {
         file.id === activeTabId ? " border-[#cf6ccf]" : "border-transparent"
       }`}
       onClick={onClick}
+     
     >
       <span>
         <RendenrFileIcon filename={name} />
